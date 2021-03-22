@@ -7,7 +7,7 @@
 </h1>
 
 <h2 align="center">
-    BTS implemantation in C
+    BST implemantation in C
 </h2>
 
 <p align="center">
@@ -29,10 +29,10 @@ A binary search trees (BST) is a container that allows fast lookup, addition and
 </br></br>
 
 <h2>About:</h2>
-Evaluation Project for the Data Structure course from Big Data at IESB. 
+Assignment for the Data Structure course from Big Data at IESB. 
 </br></br>
 
-This project implements in a working and optimal way a BTS using C as a programming language. 
+This project implements in a working and optimal way a BST using C as a programming language. 
 </br></br>
 
 

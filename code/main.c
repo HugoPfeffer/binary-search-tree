@@ -3,8 +3,8 @@
 
 struct node {
   int length; // node will store int length 
-  char artist; // node will store char artist name
-  char songName; // node will store char song name
+  char* artist; // node will store char artist name
+  char* songName; // node will store char song name
 
   struct node *right_child; // right child
   struct node *left_child; // left child
@@ -29,10 +29,12 @@ struct node* find_minimum(struct node *root) {
 
 //function to create a node
 
-struct node* new_node(int x) {
+struct node* new_node(int x, char* y, char* z) {
   struct node *p;
   p = malloc(sizeof(struct node));
   p->length = x;
+  p->artist = y;
+  p->songName = z;
   p->left_child = NULL;
   p->right_child = NULL;
 
@@ -91,8 +93,62 @@ struct node* delete(struct node *root, int x) {
 }
 
 
+void result(struct node *root) {
+  if(root!=NULL) {
+    printf("%d", root->length);
+  }
+}
+
+void split_string( char lines[] ){
+  lines;
+  int i = 0;
+  char *p = strtok (lines, "/");
+  char *array[3];
+
+  while (p != NULL)
+  {
+      array[i++] = p;
+      p = strtok (NULL, "/");
+  }
+  for (i = 0; i < 3; ++i) 
+    printf("%s\n", array[i]);
+}
 
 int main() {
 
-   return 0;
+  // struct node *root;
+  // root = new_node(array[2])
+
+  // open song-list
+  FILE * fpointer = fopen("song-list.txt", "r");
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  fclose(fpointer); 
+  return 0;
 }
