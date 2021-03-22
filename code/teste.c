@@ -29,60 +29,62 @@ int main ()
 
   // open song-list
   FILE * fpointer = fopen("song-list.txt", "r");
+
+
+  // Vars
   char song[50];
   char artist[50];
   char length_char[50];
   int length;
-  char buf[] ="abc/qwe/ccd";
   int i = -1;    
   int j = 0;    
-  
   char line[255];
 
+  // Loop to retrieve lines within file
   while(fgets(line, sizeof line, fpointer) != NULL) {
-    // printf("%s\n", line);
-    char c = line[0];
-    
 
+    // Loop vars
+    char c = line[0];
     i = -1;
     j = 0;
     
+
+    // First loop to retrive Song Name
     while (c != ',') { 
       s.songName[i++] = c;
       c = line[j++];
     }
     s.songName[i++] = '\0';
-
     printf("%s\n", s.songName);
 
 
 
-
+    // Reset loop vars
     i = 0; 
     c = line[j++];
 
+    // Second Loop to retrive Artists
     while (c != ',') { 
       s.artist[i++] = c;
       c = line[j++];
     }
     s.artist[i++] = '\0';
-
-
     printf("%s\n", s.artist);
     
-    
-    
-    
+
+
+    // Reset loop vars
     i = 0; 
     c = line[j++];
 
+    // Third Loop to retrieve Length
     while (c != '\n') { 
       length_char[i++] = c;
       c = line[j++];
     }
     length_char[i++] = '\0';
 
-
+    // Convert string to int
     s.length = atoi(length_char);
     printf("%d\n", s.length);
   }

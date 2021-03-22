@@ -92,27 +92,15 @@ struct node* delete(struct node *root, int x) {
   return root;
 }
 
+//////////////////
 
-void result(struct node *root) {
-  if(root!=NULL) {
-    printf("%d", root->length);
-  }
-}
 
-void split_string( char lines[] ){
-  lines;
-  int i = 0;
-  char *p = strtok (lines, "/");
-  char *array[3];
 
-  while (p != NULL)
-  {
-      array[i++] = p;
-      p = strtok (NULL, "/");
-  }
-  for (i = 0; i < 3; ++i) 
-    printf("%s\n", array[i]);
-}
+
+
+
+
+
 
 int main() {
 
