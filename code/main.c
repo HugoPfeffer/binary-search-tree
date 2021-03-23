@@ -2,6 +2,15 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+
+
+// Global vars 
+bool invalidSearch = true;
+
+
+
+
+
 struct song{
   char *songName;
   char *artist;
@@ -18,13 +27,15 @@ struct node {
 
 struct node* search(struct node *root, int x) {
 
-  if(root==NULL) //if root->length is x then the element is found
+  if(root==NULL) 
   {
     return root;
   }
   else { 
-    if(root->s.length==x) {
+    if(root->s.length==x) //if root->length is x then the element is found
+    {
       printf("%s->%s\n", root->s.songName, root->s.artist);
+      invalidSearch = false;
     }
     if(x>root->s.length) // x is greater, so we will search the right subtree
     {
@@ -213,30 +224,31 @@ int main() {
 
     
 
-  // while (searchInput == true) { 
-  //   printf("Insira o tamanho em segundos da musica desejada: ");
-  //   scanf("%d", &userInput);
+  while (searchInput == true) { 
+    printf("Insira o tamanho em segundos da musica desejada: ");
+    scanf("%d", &userInput);
+
+    struct node* result = search(root, userInput);
+
+
     
-  //   struct node* result = search(root, userInput);
+    while (invalidSearch == true) {
+      printf("Numero inserido e invalido\n----------------------\n");
+      printf("Insira o tamanho em segundos da musica desejada: ");
+      scanf("%d", &userInput);
+      struct node* result = search(root, userInput);
+    }
+    invalidSearch == true;
 
-  //   char resposta;
-  //   printf("Deseja pesquisar novamente? ");
-  //   scanf("%s", resposta);
+    char resposta;
+    printf("Deseja pesquisar novamente? ");
+    scanf("%s", &resposta);
 
-  //   if(resposta == 'n') {
-  //     break;
-  //   }
-  // }
-  
-  printf("Insira o tamanho em segundos da musica desejada: ");
-  scanf("%d", &userInput);
-  struct node* result = search(root, userInput);
+    if(resposta == 'n') {
+      break;
+    }
+  }
 
-
-  
-
-
-  // inorder(root);
 
 
 
