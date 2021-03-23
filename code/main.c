@@ -9,8 +9,6 @@ bool invalidSearch = true;
 
 
 
-
-
 struct song{
   char *songName;
   char *artist;
@@ -48,16 +46,9 @@ struct node* search(struct node *root, int x) {
   }
 };
 
-struct node* find_minimum(struct node *root) {
-  if(root == NULL)
-    return NULL;
-  else if(root->left_child != NULL) // node with minimum value will have no left child
-    return find_minimum(root->left_child); // left most element will be minimum
-  return root;
-}
+
 
 //function to create a node
-
 struct node* new_node(struct song song) {
   struct node *p;
   p = malloc(sizeof(struct node));
@@ -81,47 +72,6 @@ struct node* insert(struct node *root, struct song song) {
     root->left_child = insert(root->left_child, song);
   return root;
 }
-
-
-// funnction to delete a node
-struct node* delete(struct node *root, int x) {
-  //searching for the item to be deleted
-  if(root==NULL)
-    return NULL;
-  if (x>root->s.length)
-    root->right_child = delete(root->right_child, x);
-  else if(x<root->s.length)
-    root->left_child = delete(root->left_child, x);
-  
-  else {
-    //No Children
-    if(root->left_child==NULL && root->right_child==NULL) {
-      free(root);
-      return NULL;
-    }
-
-    //One Child
-    else if(root->left_child==NULL || root->right_child==NULL) {
-      struct node *temp;
-      if(root->left_child==NULL)
-        temp = root->right_child;
-      else
-        temp = root->left_child;
-      free(root);
-      return temp;
-    } 
-
-    //Two Children
-    else {
-      struct node *temp = find_minimum(root->right_child);
-      root->s.length = temp->s.length;
-      root->right_child = delete(root->right_child, temp->s.length);
-    }
-  }
-  return root;
-}
-
-
 
 void inorder(struct node *root)
 {
@@ -176,7 +126,6 @@ int main() {
       c = line[j++];
     }
     s.songName[i++] = '\0';
-    // printf("%s\n", song);
 
 
     // Reset loop vars
@@ -190,7 +139,6 @@ int main() {
       c = line[j++];
     }
     s.artist[i++] = '\0';
-    // printf("%s\n", s.artist);
     
 
 
@@ -208,7 +156,6 @@ int main() {
 
     // Convert string to int
     s.length = atoi(length_char);
-    // printf("%d\n", length);
   
   
     if (root_created == false) { 
@@ -220,10 +167,10 @@ int main() {
     }
   }
 
-  fclose(fpointer); 
+  fclose(fpointer); // Closes .txt file with songs
 
     
-
+  // Input search
   while (searchInput == true) { 
     printf("Insira o tamanho em segundos da musica desejada: ");
     scanf("%d", &userInput);
@@ -231,7 +178,7 @@ int main() {
     struct node* result = search(root, userInput);
 
 
-    
+    // input filtering
     while (invalidSearch == true) {
       printf("Numero inserido e invalido\n----------------------\n");
       printf("Insira o tamanho em segundos da musica desejada: ");
