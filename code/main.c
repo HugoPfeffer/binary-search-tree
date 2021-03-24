@@ -73,7 +73,7 @@ struct node* insert(struct node *root, struct song song) {
   return root;
 }
 
-void inorder(struct node *root)
+void inorder(struct node *root)  // print three
 {
     if(root!=NULL) // checking if the root is not null
     {
@@ -82,9 +82,6 @@ void inorder(struct node *root)
         inorder(root->right_child);// visiting right child
     }
 }
-
-//////////////////
-
 
 void openFromFile(char *file) {
   // open song-list
@@ -163,7 +160,10 @@ void openFromFile(char *file) {
 
   // Input search
   while (searchInput == true) { 
+    printf("Insira o tamanho em segundos da musica desejada: ");
+    scanf("%d", &userInput);
 
+    struct node* result = search(root, userInput);
 
 
     // input filtering
@@ -175,23 +175,14 @@ void openFromFile(char *file) {
     }
     invalidSearch == true;
 
-    
     char resposta;
     printf("Deseja pesquisar novamente? ");
     scanf("%s", &resposta);
+
     if(resposta == 'n') {
       break;
     }
-    
-    
-    printf("Insira o tamanho em segundos da musica desejada: ");
-    scanf("%d", &userInput);
-    struct node* result = search(root, userInput);
-
-
   }
-
-
 }
 
 
@@ -200,13 +191,7 @@ void openFromFile(char *file) {
 
 int main() {
 
-    openFromFile("song-list.txt");
- 
-
-
-
-
-
+  openFromFile("song-list.txt");
 
   return 0;
 }
