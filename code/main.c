@@ -149,7 +149,8 @@ void openFromFile(char *file) {
     // Convert string to int
     s.length = atoi(length_char);
   
-  
+
+    // Check if root is created, if not invoke new_node() 
     if (root_created == false) { 
       root = new_node(s);
       root_created = true;
@@ -161,9 +162,107 @@ void openFromFile(char *file) {
 
   fclose(fpointer); // Closes .txt file with songs
 
+  // // Input search
+  // while (searchInput == true) { 
+  //   printf("Insira o tamanho em segundos da musica desejada: ");
+  //   scanf("%d", &userInput);
+
+  //   struct node* result = search(root, userInput);
+
+
+  //   // input filtering
+  //   while (invalidSearch == true) {
+  //     printf("Numero inserido e invalido\n----------------------\n");
+  //     printf("Insira o tamanho em segundos da musica desejada: ");
+  //     scanf("%d", &userInput);
+  //     struct node* result = search(root, userInput);
+  //   }
+  //   invalidSearch == true;
+
+  //   char resposta;
+  //   printf("Deseja pesquisar novamente? ");
+  //   scanf("%s", &resposta);
+
+  //   if(resposta == 'n') {
+  //     break;
+  //   }
+  // }
+
+
+}
+
+void populateNodes() {
+  struct node *root;
+  struct song s;
+  int i = 1;
+  char resposta;
+  int nmusicas;
+  char *length_char;
+
+  
+  // printf("Musica %d: \n", i);
+  // printf("Insira o nome da musica: \n");
+  // scanf("%s", &s.songName);
+  // printf("Insira o nome do artista: \n");
+  // scanf("%s", &s.artist);
+  // printf("Insira o tempo de duracao da musica (em segundos): \n");
+  // scanf("%d", &s.length);
+  s.songName = "music1";
+  s.artist = "artist1";
+  s.length = 10;
+  root = new_node(s);
+
+
+  printf("Deseja adicionar mais musicas?: \n");
+  scanf("%s", &resposta);
+
+  if (resposta != 'n') { 
+    printf("Quantas musicas deseja adicionar?: \n");
+    scanf("%d", &nmusicas);
+    
+    for (i=1; i<nmusicas; i++) {
+      printf("Insira o nome da musica: \n");
+      // s.songName = (char*) malloc(50*sizeof(char));
+      scanf("%s", &s.songName);
+      printf("\n%s\n", &s.songName);
+
+      printf("Insira o nome do artista: \n");
+      // s.artist = (char*) malloc(50*sizeof(char));
+      scanf("%s", &s.artist);
+      printf("\n%s\n", &s.artist);
+
+      printf("Insira o tempo de duracao da musica (em segundos): \n");
+      length_char = (char*) malloc(50*sizeof(char));
+      scanf("%s", &length_char);
+      // Convert string to int
+      s.length = atoi(length_char);
+      // printf("\n%i\n", atoi(length_char));
+
+      insert(root,s);
+    }
+    // for (i=1; i<10; i++) {
+    //   s.songName = ("music");
+    //   s.artist = ("artist");
+    //   s.length = ("%d", i);
+    //   insert(root,s);
+    // }
+  }
+}
+
+void searchSongs() {
+  struct node *root;
+  struct song s;
+
+  bool searchInput = true;
+  int userInput; 
+
+
   // Input search
   while (searchInput == true) { 
+    printf("Insira o tamanho em segundos da musica desejada: ");
+    scanf("%d", &userInput);
 
+    struct node* result = search(root, userInput);
 
 
     // input filtering
@@ -175,33 +274,26 @@ void openFromFile(char *file) {
     }
     invalidSearch == true;
 
-    
     char resposta;
     printf("Deseja pesquisar novamente? ");
     scanf("%s", &resposta);
+
     if(resposta == 'n') {
       break;
     }
-    
-    
-    printf("Insira o tamanho em segundos da musica desejada: ");
-    scanf("%d", &userInput);
-    struct node* result = search(root, userInput);
-
-
   }
-
-
 }
-
-
-
 
 
 int main() {
 
-    openFromFile("song-list.txt");
- 
+
+
+
+  //openFromFile("song-list.txt");
+  populateNodes();  
+  searchSongs();  
+    
 
 
 
